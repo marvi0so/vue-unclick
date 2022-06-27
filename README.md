@@ -51,7 +51,8 @@ we mean by "un-clicking"):
       }
     },
     methods: {
-      hideDropdown() {
+      hideDropdown(event) {
+        console.log(event)
         this.isVisible = false
       },
       toggleDropdown() {
@@ -76,3 +77,9 @@ directive listens for clicks by adding an boolean argument to the directive:
 In the above example, event listeners will only be added when `isVisible` is
 truthy in order to avoid unnecessary overheads. **This approach is strongly
 recommended.**
+
+## Testing
+
+```
+docker run -it --rm -v "$PWD":/usr/src/app -w /usr/src/app node:latest npm run test -- --coverage
+```

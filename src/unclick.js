@@ -33,18 +33,16 @@ function removeEventListener(el) {
 
 export default {
   beforeMount: (el, binding) => {
-
     //configure handler
     el.unclickEvent = (event) => {
       if (!(el == event.target || el.contains(event.target))) {
-        binding.value()
+        const callback = binding.value
+        callback(event)
       }
     }
-
-    //add fallback event listener
-    handleSimpleDirective(el, binding)
   },
   mounted: (el, binding) => {
+    handleSimpleDirective(el, binding)
     handleAdvancedDirective(el, binding)
   },
   updated: (el, binding) => {
